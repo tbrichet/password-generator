@@ -81,72 +81,66 @@ var specialCharacter = [
 ]
 
 //Function to prompt user
-function getPasswordOptions() {
+function promptUser() {
     //Password Length
     var length = parseInt(
         prompt("How many characters would you like your password to contain? You must select between 8 and 128 characters.")
-);
+    );
 
-//Ensure password length is a number
-if (isNaN(length) === true) {
-    alert("Password length must be a number.");
-    return;
-}
+    //Ensure password length is a number
+    if (isNaN(length) === true) {
+        alert("Password length must be a number.");
+        return;
+    }
 
-//Ensure password is at least 8 characters
-if (length < 8) {
-    alert("Password must be at least 8 characters.");
-    return;
-}
+    //Ensure password is correct number of characters
+    if (length < 8 || length > 128 ) {
+        alert("Password must be between 8 and 128 characters.");
+        return;
+    }
 
-//Ensure password is not more than 128 characters
-if (length > 128) {
-    alert("Password may not be more than 128 characters.")
-    return;
-}
+    //Confirm use of uppercase letters
+    var hasUpperCase = confirm(
+        "Click OK to include uppercase letters in your password."
+    );
 
-//Confirm use of uppercase letters
-var hasUpperCase = confirm(
-    "Click OK to include uppercase letters in your password."
-);
+    //Confirm use of lowercase characters
+    var hasLowerCase = confirm(
+        "Click OK to include lowercase letters in your password."
+    );
 
-//Confirm use of lowercase characters
-var hasLowerCase = confirm(
-    "Click OK to include lowercase letters in your password."
-);
+    //Confirm use of numeric values
+    var hasNumbers = confirm(
+        "Click OK to include numeric values in your password."
+    );
 
-//Confirm use of numeric values
-var hasNumbers = confirm(
-    "Click OK to include numeric values in your password."
-);
+    //Confirm use of special characters
+    var hasSpecialCharacters = confirm(
+        "Click OK to include special character(s) in your password."
+    );
 
-//Confirm use of special characters
-var hasSpecialCharacters = confirm(
-    "Click OK to include special character(s) in your password."
-);
+    //Make sure user has selected at least one option.
+    if (
+        hasUpperCase === false &&
+        hasLowerCase === false &&
+        hasNumbers === false &&
+        hasSpecialCharacters === false
+        ) {
+        alert("You must select at least one type of character. Please try again.");
+        return;
+    }
 
-//Make sure user has selected at least one option.
-if (
-    hasUpperCase === false &&
-    hasLowerCase === false &&
-    hasNumbers === false &&
-    hasSpecialCharacters === false
-    ) {
-    alert("You must select at least one type of character. Please try again.");
-    return;
-}
+    //Store User Input
+    var promptUser = {
+        length: length,
+        hasUpperCase: hasUpperCase,
+        hasLowerCase: hasLowerCase,
+        hasNumbers: hasNumbers,
+        hasSpecialCharacters: hasSpecialCharacters,
+    };
 
-//Store User Input
-var passwordOptions = {
-    length: length,
-    hasUpperCase: hasUpperCase,
-    hasLowerCase: hasLowerCase,
-    hasNumbers: hasNumbers,
-    hasSpecialCharacters: hasSpecialCharacters,
-};
-
-return passwordOptions;
-}
+    return promptUser;
+    }
 
 //Pull from Array
 function getRandom(arr) {
@@ -158,7 +152,7 @@ function getRandom(arr) {
 
 //Generate Password
 function generatePassword() {
-    var options = getPasswordOptions();
+    var options = promptUser();
     var result = [];
 
 //Store types of characters
