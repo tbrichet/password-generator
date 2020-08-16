@@ -69,15 +69,15 @@ var num = Math.floor(Math.random()*10);
 //Array for Special Characters
 
 var specialCharacter = [
-    "U+0021",
-    "U+0022",
-    "U+0023",
-    "U+0024",
-    "U+0025",
-    "U+0026",
-    "U+002A",
-    "U+003F",
-    "U+0040",
+    "@",
+    "#",
+    "$",
+    "%",
+    "*",
+    "!",
+    "?",
+    "<",
+    ">",
 ]
 
 //Function to prompt user
