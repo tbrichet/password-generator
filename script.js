@@ -156,8 +156,37 @@ var possibleCharacters =[];
 //Contain at least one of each type of character
 var guaranteedCharacters = [];
 
+//Add UpperCase Character
+if (options.hasUpperCase) {
+    possibleCharacters = possibleCharacters.concat(upperCase);
+    guaranteedCharacters.push(getRandom(upperCase));
+}
 
+//Add LowercaseCharacter
+if (options.hasLowerCase) {
+    possibleCharacters = possibleCharacters.concat(lowerCase);
+    guaranteedCharacters.push(getRandom(lowerCase));
+}
 
+//Add Number
+if (options.hasNumbers) {
+    possibleCharacters = possibleCharacters.concat(num);
+    guaranteedCharacters.push(getRandom(num));
+}
+
+//Add Special Characters
+if (options.hasSpecialCharacters) {
+    possibleCharacters = possibleCharacters.concat(specialCharacter);
+    guaranteedCharacters.push(getRandom(specialCharacter));
+}
+
+//Ensure guaranteed character
+for (var i = 0; i < guaranteedCharacters.length; i++) {
+    resutl[i] = uaranteedCharacters[i];
+}
+
+//Pass to writePassword
+return result.joint('');
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
