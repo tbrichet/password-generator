@@ -81,28 +81,39 @@ var specialCharacter = [
 ]
 
 //Function to prompt user
-function promptUser() {
+function getPasswordOptions() {
     //Password Length
-    var passwordLength = parseInt(
-        window.prompt("How many characters would you like your password to contain? You must select between 8 and 128 characters.")
-    )
-};
+    var length = parseInt(
+        prompt("How many characters would you like your password to contain? You must select between 8 and 128 characters.")
+);
 
-//Check validity of password length response
-if (passwordLength < 8 || passwordLength > 128) {
-    alert("You must choose a number between 8 and 128. Please try again.")
+//Ensure password length is a number
+if (isNaN(length) === true) {
+    alert("Password length must be a number.");
+    return;
+}
+
+//Ensure password is at least 8 characters
+if (length < 8) {
+    alert("Password must be at least 8 characters.");
+    return;
+}
+
+//Ensure password is not more than 128 characters
+if (length > 128) {
+    alert("Password may not be more than 128 characters.")
     return;
 }
 
 //Confirm use of uppercase letters
 var hasUpperCase = confirm(
     "Click OK to include uppercase letters in your password."
-)
+);
 
 //Confirm use of lowercase characters
 var hasLowerCase = confirm(
     "Click OK to include lowercase letters in your password."
-)
+);
 
 //Confirm use of numeric values
 var hasNumbers = confirm(
@@ -119,15 +130,15 @@ if (
     hasUpperCase === false &&
     hasLowerCase === false &&
     hasNumbers === false &&
-    hasSpecialCharacters === false &&
-) {
+    hasSpecialCharacters === false
+    ) {
     alert("You must select at least one type of character. Please try again.");
     return;
 }
 
 //Store User Input
 var passwordOptions = {
-    passwordLength: passwordLength,
+    length: length,
     hasUpperCase: hasUpperCase,
     hasLowerCase: hasLowerCase,
     hasNumbers: hasNumbers,
@@ -135,6 +146,7 @@ var passwordOptions = {
 };
 
 return passwordOptions;
+}
 
 //Pull from Array
 function getRandom(arr) {
@@ -146,9 +158,8 @@ function getRandom(arr) {
 
 //Generate Password
 function generatePassword() {
-    var options = promptUser();
+    var options = getPasswordOptions();
     var result = [];
-}
 
 //Store types of characters
 var possibleCharacters =[];
@@ -180,13 +191,21 @@ if (options.hasSpecialCharacters) {
     guaranteedCharacters.push(getRandom(specialCharacter));
 }
 
-//Ensure guaranteed character
+//Loop to iterate over the password length from the options object
+for (var i = 0; i <options.length; i++) {
+    var possibleCharacter = getRandom(possibleCharacters);
+
+    result.push(possibleCharacter);
+}
+
+//Ensure guaranteed character included in result
 for (var i = 0; i < guaranteedCharacters.length; i++) {
-    resutl[i] = uaranteedCharacters[i];
+    result[i] = guaranteedCharacters[i];
 }
 
 //Pass to writePassword
-return result.joint('');
+return result.join('');
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
