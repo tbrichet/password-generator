@@ -89,13 +89,13 @@ function promptUser() {
 
     //Ensure password length is a number
     if (isNaN(length) === true) {
-        alert("Password length must be a number.");
+        window.alert("Password length must be a number.");
         return;
     }
 
     //Ensure password is correct number of characters
     if (length < 8 || length > 128 ) {
-        alert("Password must be between 8 and 128 characters.");
+        window.alert("Password must be between 8 and 128 characters.");
         return;
     }
 
