@@ -132,7 +132,32 @@ var passwordOptions = {
     hasLowerCase: hasLowerCase,
     hasNumbers: hasNumbers,
     hasSpecialCharacters: hasSpecialCharacters,
+};
+
+return passwordOptions;
+
+//Pull from Array
+function getRandom(arr) {
+    var randIndex = Math.floor(Math.random() * arr.length);
+    var randElement = arr[randIndex];
+
+    return randElement;
 }
+
+//Generate Password
+function generatePassword() {
+    var options = promptUser();
+    var result = [];
+}
+
+//Store types of characters
+var possibleCharacters =[];
+
+//Contain at least one of each type of character
+var guaranteedCharacters = [];
+
+
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
