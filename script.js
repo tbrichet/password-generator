@@ -192,7 +192,7 @@ if (options.hasSpecialCharacters) {
 }
 
 //Loop to iterate over the password length from the options object
-for (var i = 0; i <options.length; i++) {
+for (var i = 0; i < options.length; i++) {
     var possibleCharacter = getRandom(possibleCharacters);
 
     result.push(possibleCharacter);
