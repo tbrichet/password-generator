@@ -25,7 +25,7 @@ This password generator was created as the Week 3 Challenge Assignment for the U
 Github Repository | https://github.com/tbrichet/password-generator <br>
 Deployed Application | https://tbrichet.github.io/password-generator
 
-## Contribution
+## Contributions
 * The starter code was provided by the University of Arizona team. <br>
 * The updates to the JavaScript file were made with <3 by Tara Brichetto. <br>
 
